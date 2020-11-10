@@ -8,7 +8,7 @@ from data.model.meta_model import MetaModel
 
 
 class Repository:
-    def __init__(self, configuration):
+    def __init__(self):
         self._engine = create_engine('sqlite:///D:\\_temp_python\\foo.db', echo=True)
         self._session = sessionmaker(bind=self._engine)()
         Base.metadata.create_all(self._engine)
@@ -16,7 +16,7 @@ class Repository:
     def add(self, entity: Base):
         self._session.add(entity)
 
-    def get(self, key: str):
+    def get(self, key: str) -> MetaModel:
         self._session.query(MetaModel).filterby(key=key).first()
 
     def save_change(self):

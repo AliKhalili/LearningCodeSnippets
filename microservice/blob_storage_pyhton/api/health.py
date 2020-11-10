@@ -1,8 +1,10 @@
-from flask import jsonify
+from flask import jsonify, Blueprint, g
 
-from api import health_bp
+from api.base import Ok
+
+health_bp = Blueprint('health', __name__, url_prefix='/health')
 
 
 @health_bp.route('/check', methods=['GET'])
 def check():
-    return jsonify(staus='Healthy')
+    return Ok(staus='Healthy')

@@ -1,9 +1,10 @@
 import time
 
-from flask import Flask, g, request
+from flask import Flask, g, request, jsonify
 
+from api.blob import blob_bp
+from api.health import health_bp
 from helpers.configuration import Configuration
-from api import blob_bp, health_bp
 
 
 def register_extensions(app):
@@ -37,4 +38,4 @@ def create_app(config=Configuration):
 
 
 if __name__ == '__main__':
-    create_app().run()
+    create_app().run(debug=True)
