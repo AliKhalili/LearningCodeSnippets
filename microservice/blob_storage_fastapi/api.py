@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from starlette.responses import JSONResponse
 
+from blob.api import blob_router
 from data.database import get_db
 
 api_router = APIRouter(
@@ -9,7 +10,7 @@ api_router = APIRouter(
 )
 
 
-# api_router.include_router(blob_router, prefix="/blob", tags=["users"])
+api_router.include_router(blob_router, prefix="/blob", tags=["blob"])
 
 
 @api_router.get("/healthcheck", include_in_schema=True)

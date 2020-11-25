@@ -1,3 +1,4 @@
+from starlette.responses import JSONResponse
 from tabulate import tabulate
 
 import logging
@@ -14,7 +15,7 @@ log = logging.getLogger(__name__)
 configure_logging()
 
 app = Starlette()
-api = FastAPI()
+api = FastAPI(default_response_class=JSONResponse)
 app.add_middleware(SetDbMiddleware)
 
 api.include_router(api_router, prefix="/v1")
