@@ -3,7 +3,7 @@ from tabulate import tabulate
 
 import logging
 
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI
 import uvicorn
 from starlette.applications import Starlette
 
