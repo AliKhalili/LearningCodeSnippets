@@ -9,7 +9,7 @@ from starlette.applications import Starlette
 
 from api import api_router
 from logger import configure_logging
-from middleware import SetDbMiddleware
+from middleware import SetDbMiddleware, MetricsMiddleware
 
 log = logging.getLogger(__name__)
 configure_logging()
@@ -17,6 +17,7 @@ configure_logging()
 app = Starlette()
 api = FastAPI(default_response_class=JSONResponse)
 app.add_middleware(SetDbMiddleware)
+app.add_middleware(MetricsMiddleware)
 
 api.include_router(api_router, prefix="/v1")
 
