@@ -2,7 +2,7 @@ import array
 import time
 from functools import reduce
 import dis
-
+print(list(map(lambda x: {x: min(1, max((x - 40) / 10., 0))}, range(35, 55, 2))))
 
 def builtin_join(arr: array):
     return ''.join(arr)
