@@ -5,17 +5,19 @@ import requests
 from tqdm import tqdm
 
 baseUrl = 'https://www.hamshahrionline.ir/news/{id}'
-base_path = 'D:\_temp\crawler\hamshahri\{id}'
+base_path = 'D:\_temp\crawler\hamshahri'
 id_gent = range(577318, 1, -1)
 default_headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0'
 }
 
+download_pages = {int(f): f for f in os.listdir(base_path)}
+
 
 def download_one(page_id):
     url = baseUrl.format(id=page_id)
-    output_path = base_path.format(id=page_id)
-    if os.path.exists(output_path):
+    output_path = os.path.join(base_path, str(page_id))
+    if page_id in download_pages:
         return True
     try:
         response = requests.get(url, headers=default_headers)
